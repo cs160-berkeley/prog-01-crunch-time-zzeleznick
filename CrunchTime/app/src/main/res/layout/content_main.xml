@@ -40,28 +40,28 @@
             android:layout_weight="0.5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
             android:text="@string/units"
             android:textColor="@android:color/darker_gray"/>
-
-
-        <!--TextView
-            android:id="@+id/welcome"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="@string/welcome_text"
-            android:textSize="@dimen/welcome_font_size"
-            android:textColor="@android:color/darker_gray"/-->
     </LinearLayout>
 
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/block1"
+        android:text="@string/button"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@color/white"
+        android:textAllCaps="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
 
     <LinearLayout android:id="@+id/block2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:weightSum="2"
-        android:layout_below="@id/block1"
+        android:layout_below="@id/submitButton"
         android:orientation="vertical"
         tools:context=".ListActivity">
 

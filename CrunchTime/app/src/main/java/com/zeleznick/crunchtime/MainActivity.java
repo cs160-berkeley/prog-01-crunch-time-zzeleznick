@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,17 +13,21 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 
+
+
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    TextView welcomeText;
-    // TextView inputValueText;
+    //TextView welcomeText;
+    EditText inputValue;
     TextView unitsText;
     ListView listView1;
-
+    Button  mSubmitButton;
+    int selected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,63 +44,75 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        /*
-        // 0.   Create list view
-        String[] mobileArray = {"Android","IPhone","WindowsMobile","Blackberry","WebOS","Ubuntu","Windows7","Max OS X"};
-        ArrayAdapter listAdapter = new ArrayAdapter<String>(this, R.layout.activity_listview, mobileArray);
-        ListView listView = (ListView) findViewById(R.id.mobile_list);
-        listView.setAdapter(listAdapter);
-        */
-
-        Weather weather_data[] = new Weather[]
+        // 0.   Init weather class instance and create adapter
+        final Exercise exercise_data[] = new Exercise[]
                 {
-                        new Weather(R.drawable.pushup, "Push-ups"),
-                        new Weather(R.drawable.situp, "Sit-ups"),
-                        new Weather(R.drawable.jumping_jacks, "Jumping Jacks"),
-                        new Weather(R.drawable.jogging, "Jogging"),
-                        new Weather(R.drawable.walking, "Walking")
+                        new Exercise(R.drawable.flame, "Calories"),
+                        new Exercise(R.drawable.pushup, "Push-ups"),
+                        new Exercise(R.drawable.situp, "Sit-ups"),
+                        new Exercise(R.drawable.jumping_jacks, "Jumping Jacks"),
+                        new Exercise(R.drawable.jogging, "Jogging"),
+                        new Exercise(R.drawable.walking, "Walking")
                 };
 
-        WeatherAdapter wAdapter = new WeatherAdapter(this,
-                R.layout.listview_item_row, weather_data);
+        final exerciseAdapter wAdapter = new exerciseAdapter(this,
+                R.layout.listview_item_row, exercise_data);
 
-
+        // 1.   Create list view and link with adapter
         listView1 = (ListView)findViewById(R.id.listView1);
         listView1.setAdapter(wAdapter);
 
-        Spinner spinner = (Spinner) findViewById(R.id.my_spinner);
-        // 1.   Create an ArrayAdapter using the string array and a default spinner layout
+        final Spinner spinner = (Spinner) findViewById(R.id.my_spinner);
+        // 2.   Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.exercises_array, android.R.layout.simple_spinner_item);
 
-        // 2.   Specify the layout to use when the list of choices appears
+        // 3.   Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        // 3.   Apply the adapter to the spinner
+        // 4.   Apply the adapter to the spinner
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-
+        //5.    Create button that updates the values
+        mSubmitButton = (Button) findViewById(R.id.submitButton);
+        mSubmitButton .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String index = "10"; //new Random().nextInt(10);
+                Log.i("my_tag", "Updating");
+                String currentExercise = spinner.getSelectedItem().toString();
+                Log.i("my_tag", "Found exercise " + currentExercise);
+                inputValue = (EditText) findViewById(R.id.input_amount);
+                String valueString = inputValue.getText().toString();
+                int intValue = 10;
+                Log.i("my_tag", "Input amount: " + valueString);
+                try
+                {
+                    intValue = Integer.parseInt(valueString);
+                    if (intValue <= 0) { intValue = 10; };
+                }
+                catch (NumberFormatException e)
+                {
+                    Log.i("error", "Caught error with amount");
+                }
+                Log.i("selected", "found id of " + selected);
+                wAdapter.update(selected, currentExercise, intValue);
+                wAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
                                int position, long id) {
         // An item was selected
-        // welcomeText = (TextView) findViewById(R.id.welcome);
-        // inputValueText = (TextView) findViewById(R.id.input_amount);
-
         unitsText = (TextView) findViewById(R.id.current_units);
         String item = parent.getItemAtPosition(position).toString();
-        unitsText.setText(item);
-
-        // inputValueText.setHint(item);
-        /* mGenerateTestButton = (Button) findViewById(R.id.testButton);
-        mGenerateTestButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String index = "10"; //new Random().nextInt(10);
-                mtestText.setText(index);
-        */
+        if (item.equalsIgnoreCase("Jogging") || item.equalsIgnoreCase("Walking")) {
+            unitsText.setText("minutes");
+        }
+        else {unitsText.setText("reps");}
+        selected = position;
     }
 
     public void onNothingSelected(AdapterView<?> parent) {

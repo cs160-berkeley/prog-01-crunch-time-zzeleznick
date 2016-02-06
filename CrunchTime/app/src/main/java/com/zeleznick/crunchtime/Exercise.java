@@ -1,13 +1,13 @@
 package com.zeleznick.crunchtime;
 
-public class Weather {
+public class Exercise {
     public int icon;
     public String title;
-    public Weather(){
+    public Exercise(){
         super();
     }
 
-    public Weather(int icon, String title) {
+    public Exercise(int icon, String title) {
         super();
         this.icon = icon;
         this.title = title;
