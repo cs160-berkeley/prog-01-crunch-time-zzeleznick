@@ -4,14 +4,11 @@
     <string name="welcome_text">Stuff goes here</string>
     <string name="input_amount">00</string>
     <string name="units">minutes</string>
-    <string-array name="planets_array">
-            <item>Mercury</item>
-            <item>Venus</item>
-            <item>Earth</item>
-            <item>Mars</item>
-            <item>Jupiter</item>
-            <item>Saturn</item>
-            <item>Uranus</item>
-            <item>Neptune</item>
+    <string-array name="exercises_array">
+            <item>Push-ups</item>
+            <item>Sit-ups</item>
+            <item>Jumping-jacks</item>
+            <item>Jogging</item>
+            <item>Walking</item>
     </string-array>
 </resources>
