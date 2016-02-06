@@ -46,7 +46,7 @@ public class exerciseAdapter extends ArrayAdapter<Exercise> {
             if (i == 0) {
                 label = "Calories";
             }
-            else if(i>3) {
+            else if(i>2) {
                 label = "minutes";
             }
             else {

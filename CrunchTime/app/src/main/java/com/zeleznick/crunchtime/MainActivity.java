@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "You can do it!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -108,7 +108,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // An item was selected
         unitsText = (TextView) findViewById(R.id.current_units);
         String item = parent.getItemAtPosition(position).toString();
-        if (item.equalsIgnoreCase("Jogging") || item.equalsIgnoreCase("Walking")) {
+        if (item.equalsIgnoreCase("Jogging") || item.equalsIgnoreCase("Walking")
+                || item.equalsIgnoreCase("Jumping Jacks")) {
             unitsText.setText("minutes");
         }
         else {unitsText.setText("reps");}
