@@ -5,11 +5,22 @@
     <string name="input_amount">10</string>
     <string name="units">minutes</string>
     <string name="button">Calculate</string>
-    <string-array name="exercises_array">
-            <item>Push-ups</item>
-            <item>Sit-ups</item>
+    <string-array name="exercises_array_base">
+            <item>Calories</item>
+            <item>Pushups</item>
+            <item>Situps</item>
             <item>Jumping Jacks</item>
             <item>Jogging</item>
             <item>Walking</item>
+    </string-array>
+    <string-array name="exercises_array_extended">
+        <item>Calories</item>
+        <item>Pullups</item>
+        <item>Squats</item>
+        <item>Leg-lifts</item>
+        <item>Plank</item>
+        <item>Cycling</item>
+        <item>Swimming</item>
+        <item>Stair-Climbing</item>
     </string-array>
 </resources>
