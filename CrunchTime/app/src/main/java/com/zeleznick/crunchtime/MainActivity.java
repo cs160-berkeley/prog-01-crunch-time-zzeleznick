@@ -12,26 +12,13 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.widget.TextView;
 
 
 public class MainActivity extends FragmentActivity {
-    //TextView welcomeText;
-    EditText inputValue;
-    TextView unitsText;
-    ListView listView1;
-    Button  mSubmitButton;
-    int selected;
     // new for swiper
     static final int ITEMS = 3;
     SwiperAdapter mSwiperAdapter;
@@ -42,11 +29,13 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.fragment_pager);
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("CrunchTime");
         // ** if using AppCompatActivity:
         /*
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +82,8 @@ public class MainActivity extends FragmentActivity {
                     return ExerciseListFragment.init(position);
                 case 1: // Fragment # 1 - This will show extra exercises
                     return AltExerciseListFragment.init(position);
+                case 2:
+                    return SillyExerciseListFragment.init(position);
                 default:// Fragment # 2-9 - Will show silly exersises
                     return ExerciseListFragment.init(position);
             }

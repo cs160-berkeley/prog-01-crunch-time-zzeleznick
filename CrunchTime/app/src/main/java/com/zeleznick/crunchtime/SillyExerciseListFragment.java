@@ -16,42 +16,42 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class AltExerciseListFragment extends ListFragment {
+public class SillyExerciseListFragment extends ListFragment {
     int fragNum;
     EditText inputValue;
     TextView unitsText;
     ListView listView1;
-    Button  mSubmitButton;
+    Button mSubmitButton;
     int selected;
     private ExerciseAdapter mAdapter;
 
-    final Exercise exercise_data_extended[] = new Exercise[]
+    final Exercise exercise_data_extra[] = new Exercise[]
             {
-                    new Exercise(R.drawable.flame, "Calories"),
-                    new Exercise(R.drawable.pulling, "Pullups"),
-                    new Exercise(R.drawable.squats, "Squats"),
-                    new Exercise(R.drawable.leglifts, "Leg-lifts"),
-                    new Exercise(R.drawable.plank, "Plank"),
-                    new Exercise(R.drawable.cycling, "Cycling"),
-                    new Exercise(R.drawable.swim, "Swimming"),
-                    new Exercise(R.drawable.stairs, "Stair-Climbing")
+                new Exercise(R.drawable.flame, "Calories"),
+                new Exercise(R.drawable.haduken_64, "Haduken"),
+                new Exercise(R.drawable.mma_64, "Roundhouse Kicks"),
+                new Exercise(R.drawable.crying_64, "Crying"),
+                new Exercise(R.drawable.dancing_64, "Dancing"),
+                new Exercise(R.drawable.kraken_64, "Kraken Attacks"),
+                new Exercise(R.drawable.cs_64, "Coding"),
+                new Exercise(R.drawable.lounging_64, "Lounging")
             };
-    ArrayList<Float> extended_values = new ArrayList<>();
+    ArrayList<Float> extra_values = new ArrayList<>();
 
-    public ArrayList<Float> makeExtended() {
-        extended_values.add(0, 100f);
-        extended_values.add(1, 100f);
-        extended_values.add(2, 225f);
-        extended_values.add(3, 25f);
-        extended_values.add(4, 25f);
-        extended_values.add(5, 12f);
-        extended_values.add(6, 13f);
-        extended_values.add(7, 15f);
-        return extended_values;
+    public ArrayList<Float> makeExtra() {
+        extra_values.add(0, 100f);
+        extra_values.add(1, 10f);
+        extra_values.add(2, 120f);
+        extra_values.add(3, 30f);
+        extra_values.add(4, 16f);
+        extra_values.add(5, 8f);
+        extra_values.add(6, 200f);
+        extra_values.add(7, 300f);
+        return extra_values;
     }
 
-    static AltExerciseListFragment init(int val) {
-        AltExerciseListFragment exList = new AltExerciseListFragment();
+    static SillyExerciseListFragment init(int val) {
+        SillyExerciseListFragment exList = new SillyExerciseListFragment();
         // Supply val input as an argument.
         Bundle args = new Bundle();
         args.putInt("val", val);
@@ -68,8 +68,8 @@ public class AltExerciseListFragment extends ListFragment {
         fragNum = getArguments() != null ? getArguments().getInt("val") : 1;
         Log.i("init_tag", "Found bundle value: " + fragNum);
         Log.i("ex_tag", "WILL MAKE EXTENDED");
-        extended_values = makeExtended();
-        mAdapter = new ExerciseAdapter(getActivity(), R.layout.listview_item_row, exercise_data_extended, extended_values);
+        extra_values = makeExtra();
+        mAdapter = new ExerciseAdapter(getActivity(), R.layout.listview_item_row, exercise_data_extra, extra_values);
         // mAdapter.notifyDataSetChanged();
     }
 
@@ -94,7 +94,7 @@ public class AltExerciseListFragment extends ListFragment {
         // 2.   Create an ArrayAdapter using the string array and a default spinner layout
         Log.i("control_tag", "Using alternate exercises");
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
-                    R.array.exercises_array_extended, android.R.layout.simple_spinner_item);
+                R.array.exercises_array_extra, android.R.layout.simple_spinner_item);
 
         // 3.   Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -107,7 +107,7 @@ public class AltExerciseListFragment extends ListFragment {
                 // An item was selected
                 unitsText = (TextView) rootView.findViewById(R.id.current_units);
                 String item = parent.getItemAtPosition(position).toString();
-                if (item.equalsIgnoreCase("Pullups") || item.equalsIgnoreCase("Squats") ) {
+                if (item.equalsIgnoreCase("Haduken") || item.equalsIgnoreCase("Roundhouse Kicks")) {
                     unitsText.setText("reps");
                 }
                 else if (item.equalsIgnoreCase("Calories")) {
@@ -165,4 +165,3 @@ public class AltExerciseListFragment extends ListFragment {
         Log.i("Zach FragmentList", "Item clicked: " + id);
     }
 }
-
