@@ -13,6 +13,12 @@
     tools:context="com.zeleznick.crunchtime.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="0px">
+    </android.support.v4.view.ViewPager>
+
 
     <LinearLayout android:id="@+id/block1"
         android:layout_width="fill_parent"
@@ -40,7 +46,7 @@
             android:layout_weight="0.5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
             android:text="@string/units"
             android:textColor="@android:color/darker_gray"/>
     </LinearLayout>
@@ -66,27 +72,9 @@
         tools:context=".ListActivity">
 
         <ListView
-            android:id="@+id/listView1"
+            android:id="@android:id/list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
     </LinearLayout>
-
-
-    <!--LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_below="@id/block1"
-        tools:context=".ListActivity">
-
-        <ListView
-            android:id="@+id/mobile_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-        </ListView>
-
-    </LinearLayout-->
-
 
 </RelativeLayout>
