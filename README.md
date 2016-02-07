@@ -12,7 +12,7 @@ Zachary Zeleznick ([zzeleznick@berkeley.edu](mailto:zzeleznick@berkeley.edu))
 
 ## Demo Video
 
-See [your demo video title here] (https://link_to_your_video)
+See [Live Demo] (https://youtu.be/vDjbQoQF1kE)
 
 ## Screenshots
 
